@@ -1,0 +1,39 @@
+@model IEnumerable<CinemaManager.Models.Cinema.ProdMovie>
+
+@{
+    ViewData["Title"] = "Rechercher par titre";
+}
+
+<h1>Rechercher par titre</h1>
+
+@using (Html.BeginForm())
+{
+    <p>
+        Titre : @Html.TextBox("Critère")
+        <input type="submit" value="Rechercher" />
+    </p>
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Titre</th>
+            <th>Genre</th>
+            <th>Producteur</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.mTitle</td>
+                <td>@item.mGenre</td>
+                <td>@item.pName</td>
+                <td>
+                    <a asp-controller="Movies" asp-action="Details"
+                       asp-route-id="@item.mTitle">Details</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

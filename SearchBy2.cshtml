@@ -1,0 +1,36 @@
+@model IEnumerable<CinemaManager.Models.Cinema.ProdMovie>
+
+@{
+    ViewData["Title"] = "Recherche par genre et titre";
+}
+
+<h1>Recherche par genre et titre</h1>
+
+@using (Html.BeginForm())
+{
+    <p>
+        Genre @Html.DropDownList("genre", new SelectList(ViewBag.Genres))
+        &nbsp; Titre @Html.TextBox("title")
+        <input type="submit" value="Find" />
+    </p>
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Titre</th>
+            <th>Genre</th>
+            <th>Producteur</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.mTitle</td>
+                <td>@item.mGenre</td>
+                <td>@item.pName</td>
+            </tr>
+        }
+    </tbody>
+</table>
